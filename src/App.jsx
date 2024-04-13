@@ -6,15 +6,15 @@ function App() {
   const [squares, Setsquares] = useState(Array(9).fill(null));
 
   const handleClick = (i) => {
-    const nextSquare = squares.slice();
-    if (xIsNext) {
-      nextSquare[i] = "X";
-    } else {
-      nextSquare[i] = "O";
+    if (squares[i]) {
+      console.log(squares[i]);
+      return;
     }
+    const nextSquare = squares.slice();
+    xIsNext ? (nextSquare[i] = "X") : (nextSquare[i] = "O");
     Setsquares(nextSquare);
     setXIsNext(!xIsNext);
-    console.log(nextSquare);
+    console.log(nextSquare, xIsNext);
   };
   return (
     <>
