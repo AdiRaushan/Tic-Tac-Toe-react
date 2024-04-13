@@ -2,12 +2,18 @@ import { useState } from "react";
 import Square from "./Square";
 
 function App() {
+  const [xIsNext, setXIsNext] = useState(true);
   const [squares, Setsquares] = useState(Array(9).fill(null));
 
   const handleClick = (i) => {
     const nextSquare = squares.slice();
-    nextSquare[i] = "X";
+    if (xIsNext) {
+      nextSquare[i] = "X";
+    } else {
+      nextSquare[i] = "O";
+    }
     Setsquares(nextSquare);
+    setXIsNext(!xIsNext);
     console.log(nextSquare);
   };
   return (
