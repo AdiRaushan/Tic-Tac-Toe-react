@@ -6,7 +6,7 @@ function App() {
   const [squares, Setsquares] = useState(Array(9).fill(null));
 
   const handleClick = (i) => {
-    if (squares[i]) {
+    if (squares[i] || calWinner(squares)) {
       console.log(squares[i]);
       return;
     }
@@ -16,9 +16,38 @@ function App() {
     setXIsNext(!xIsNext);
     console.log(nextSquare, xIsNext);
   };
+
+  const calWinner = () => {
+    const lines = [
+      [0, 1, 2],
+      [3, 4, 5],
+      [6, 7, 8],
+      [0, 3, 6],
+      [1, 4, 7],
+      [2, 5, 8],
+      [0, 4, 8],
+      [2, 4, 6],
+    ];
+    for (let i = 0; i < lines.length; i++) {
+      const [a, b, c] = lines[i];
+      if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c])
+        return squares[a];
+    }
+    return null;
+  };
+  const winner = calWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winnner: " + winner;
+  } else {
+    status = "Next Player: " + (xIsNext ? "X" : "O");
+  }
   return (
     <>
       <h1 className="text-center">Tic Tac Toe</h1>
+      <div className="status text-center mt-5 text-red-200 font-semibold">
+        {status}
+      </div>
       <div className="mt-10">
         <div className="board-row flex justify-center">
           <Square value={squares[0]} onSquareClick={() => handleClick(0)} />

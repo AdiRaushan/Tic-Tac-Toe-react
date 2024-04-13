@@ -63,18 +63,20 @@ body {
   font-size: 24px;
   font-weight: bold;
   line-height: 34px;
-  height: 34px;
+  height: 54px;
   margin-right: -1px;
   margin-top: -1px;
   padding: 0;
   text-align: center;
-  width: 34px;
+  width: 54px;
 }
 
 .board-row:after {
   clear: both;
   content: "";
   display: table;
+  height: 54px;
+  width: 54px;
 }
 
 .status {
